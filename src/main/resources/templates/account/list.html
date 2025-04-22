@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Danh sách tài khoản</title>
+  </head>
+  <body>
+    <h2>Danh sách tài khoản</h2>
+    <a th:href="@{/accounts/add}">Thêm tài khoản</a>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>Vai trò</th>
+          <th>Thao tác</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="acc : ${accounts}">
+          <td th:text="${acc.username}"></td>
+          <td th:text="${acc.vaitro}"></td>
+          <td>
+            <a th:href="@{/accounts/edit/{username}(username=${acc.username})}"
+              >Sửa</a
+            >
+            |
+            <a
+              th:href="@{/accounts/delete/{username}(username=${acc.username})}"
+              onclick="return confirm('Xác nhận xóa?');"
+              >Xóa</a
+            >
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
